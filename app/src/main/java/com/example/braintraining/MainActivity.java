@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        numbersGenerate();
     }
 
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void numbersGenerate(){
-        rndChoise = (int) (Math.random() * (1 - 0));
+        rndChoise = (int) (Math.random() * (2 - 1));
         String QuestText;
 
         int num1 = (int) (Math.random() * (20 - 0));
@@ -56,17 +57,17 @@ public class MainActivity extends AppCompatActivity {
 
         int numF = (int) (Math.random() * (40 - 0));
 
-
         if(rndChoise==1){QuestText = num1 + " + " + num2 + " = " + numT;}
         else{QuestText = num1 + " + " + num2 + " = " + numF;}
 
-        tvQuest.setText(QuestText);
+        tvQuest.setText(String.valueOf(rndChoise));
 
     }
 
     public void clickOnFalse_btn(View view) {
         if(rndChoise == 0){
             score++;
+            tvScore.setText(String.valueOf(score));
         }
         numbersGenerate();
     }
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     public void clickOnTrue_btn(View view) {
         if(rndChoise == 1){
             score++;
+            tvScore.setText(String.valueOf(score));
         }
         numbersGenerate();
     }
