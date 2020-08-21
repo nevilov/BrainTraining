@@ -6,4 +6,6 @@
 
     <string name="right_ans">Верно: 0</string>
     <string name="wrong_ans">Неверно: 0</string>
+
+    <string name="start_name">Brain Training</string>
 </resources>

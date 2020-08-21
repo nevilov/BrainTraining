@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -20,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private long currentTime =0;
     private float ResTime = 0.0f;
 
-    private boolean isTrue;
     private TextView RightAns, WrongAns;
     private int RightCount, WrongCount;
+    private byte flag = 100;
+
+
 
 
 
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
         numbersGenerate();
     }
@@ -40,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void init(){
-        RightCount =0; WrongCount=0;
+        RightCount = 0; WrongCount=0;
         startTime = System.currentTimeMillis();
 
         RightAns = findViewById(R.id.right_ans);
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void numbersGenerate(){
-        rndChoice = (int) (Math.random() * (2 - 1));
+        rndChoice = (int) (Math.random() * (6));
         String QuestText;
 
         int num1 = (int) (Math.random() * (20));
@@ -65,34 +69,15 @@ public class MainActivity extends AppCompatActivity {
 
         int numF = (int) (Math.random() * (40));
 
-        if(rndChoice==1){QuestText = num1 + " + " + num2 + " = " + numT; isTrue=true;}
-        else{QuestText = num1 + " + " + num2 + " = " + numF; isTrue = false;}
+        if(rndChoice==1 || rndChoice == 3 || rndChoice == 5 ){QuestText = num1 + " + " + num2 + " = " + numT; flag = 1; }
+        else{QuestText = num1 + " + " + num2 + " = " + numF; flag =0; }
 
-        tvQuest.setText(String.valueOf(QuestText));
-
+        tvQuest.setText(QuestText);
     }
 
 
     public void clickOnTrue_btn(View view) {
-        timer();
-        Counter();
-        numbersGenerate();
-    }
-
-    public void clickOnFalse_btn(View view) {
-        timer();
-        Counter();
-        numbersGenerate();
-    }
-
-    private void timer(){
-        currentTime = System.currentTimeMillis();
-        ResTime  = (float)((currentTime-startTime)/1000);
-
-        actionBar.setTitle("Time:" + ResTime);
-    }
-    private void Counter(){
-        if(isTrue){
+        if(flag == 1){
             RightCount++;
             RightAns.setText("Верно: "+ RightCount);
         }
@@ -100,5 +85,34 @@ public class MainActivity extends AppCompatActivity {
             WrongCount++;
             WrongAns.setText("Неверно "+ WrongCount);
         }
+
+
+        timer();
+        numbersGenerate();
     }
+
+    public void clickOnFalse_btn(View view) {
+        if(flag == 1){
+            WrongCount++;
+            WrongAns.setText("Неверно: "+ WrongCount);
+        }
+        else{
+            RightCount++;
+            RightAns.setText("Верно: "+ RightCount);
+        }
+
+        timer();
+
+        numbersGenerate();
+    }
+
+    private void timer(){
+        currentTime = System.currentTimeMillis();
+        ResTime  = (float)((currentTime-startTime)/1000);
+
+        actionBar.setTitle("Время: " + ResTime + " секунд");
+    }
+
+
+
 }
