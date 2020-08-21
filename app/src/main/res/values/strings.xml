@@ -3,4 +3,7 @@
 
     <string name="trueBtn">Верно</string>
     <string name="falseBtn">Ложно</string>
+
+    <string name="right_ans">Верно: 0</string>
+    <string name="wrong_ans">Неверно: 0</string>
 </resources>

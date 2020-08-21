@@ -6,21 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private final String Key = "Save_key";
-    private int rndChoise;
-    private int score=0;
-
+    private int rndChoice;
     private TextView tvQuest;
-    private TextView tvScore;
 
     private ActionBar actionBar;
+
+    private long startTime = 0;
+    private long currentTime =0;
+    private float ResTime = 0.0f;
+
+    private boolean isTrue;
+    private TextView RightAns, WrongAns;
+    private int RightCount, WrongCount;
+
+
 
 
     @Override
@@ -36,47 +40,65 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void init(){
+        RightCount =0; WrongCount=0;
+        startTime = System.currentTimeMillis();
+
+        RightAns = findViewById(R.id.right_ans);
+        WrongAns = findViewById(R.id.wrong_ans);
+
         preferences = getSharedPreferences("MainPreferences", MODE_PRIVATE);
         tvQuest = findViewById(R.id.tv_quest);
-        tvScore = findViewById(R.id.tv_score);
 
         actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle("BrainTraining");
 
-        tvScore.setText(String.valueOf(score));
     }
 
     private void numbersGenerate(){
-        rndChoise = (int) (Math.random() * (2 - 1));
+        rndChoice = (int) (Math.random() * (2 - 1));
         String QuestText;
 
-        int num1 = (int) (Math.random() * (20 - 0));
-        int num2 = (int) (Math.random() * (20 - 0));
+        int num1 = (int) (Math.random() * (20));
+        int num2 = (int) (Math.random() * (20));
         int numT = num1 + num2;
 
-        int numF = (int) (Math.random() * (40 - 0));
+        int numF = (int) (Math.random() * (40));
 
-        if(rndChoise==1){QuestText = num1 + " + " + num2 + " = " + numT;}
-        else{QuestText = num1 + " + " + num2 + " = " + numF;}
+        if(rndChoice==1){QuestText = num1 + " + " + num2 + " = " + numT; isTrue=true;}
+        else{QuestText = num1 + " + " + num2 + " = " + numF; isTrue = false;}
 
-        tvQuest.setText(String.valueOf(rndChoise));
+        tvQuest.setText(String.valueOf(QuestText));
 
+    }
+
+
+    public void clickOnTrue_btn(View view) {
+        timer();
+        Counter();
+        numbersGenerate();
     }
 
     public void clickOnFalse_btn(View view) {
-        if(rndChoise == 0){
-            score++;
-            tvScore.setText(String.valueOf(score));
-        }
+        timer();
+        Counter();
         numbersGenerate();
     }
 
-    public void clickOnTrue_btn(View view) {
-        if(rndChoise == 1){
-            score++;
-            tvScore.setText(String.valueOf(score));
+    private void timer(){
+        currentTime = System.currentTimeMillis();
+        ResTime  = (float)((currentTime-startTime)/1000);
+
+        actionBar.setTitle("Time:" + ResTime);
+    }
+    private void Counter(){
+        if(isTrue){
+            RightCount++;
+            RightAns.setText("Верно: "+ RightCount);
         }
-        numbersGenerate();
+        else{
+            WrongCount++;
+            WrongAns.setText("Неверно "+ WrongCount);
+        }
     }
 }
