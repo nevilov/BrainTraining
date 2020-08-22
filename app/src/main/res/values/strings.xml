@@ -7,5 +7,11 @@
     <string name="right_ans">Верно: 0</string>
     <string name="wrong_ans">Неверно: 0</string>
 
+    <string name="start">Начать!</string>
+    <string name="finish">Сохранить и начать заново!</string>
+
+    <string name="YourResult">Твой результат:</string>
+    <string name="YourRecord">Твой рекорд:</string>
+
     <string name="start_name">Brain Training</string>
 </resources>

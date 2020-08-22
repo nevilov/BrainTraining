@@ -3,6 +3,7 @@ package com.example.braintraining;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private int RightCount, WrongCount;
     private byte flag = 100;
 
+    private byte maxAns = 2;
+
 
 
 
@@ -37,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         init();
         numbersGenerate();
-    }
+
+}
 
 
 
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void numbersGenerate(){
+
         rndChoice = (int) (Math.random() * (6));
         String QuestText;
 
@@ -73,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         else{QuestText = num1 + " + " + num2 + " = " + numF; flag =0; }
 
         tvQuest.setText(QuestText);
+
+
     }
 
 
@@ -85,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             WrongCount++;
             WrongAns.setText("Неверно "+ WrongCount);
         }
-
+        intent();
 
         timer();
         numbersGenerate();
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         timer();
+        intent();
 
         numbersGenerate();
     }
@@ -111,6 +119,14 @@ public class MainActivity extends AppCompatActivity {
         ResTime  = (float)((currentTime-startTime)/1000);
 
         actionBar.setTitle("Время: " + ResTime + " секунд");
+    }
+
+    private void intent(){
+        if(RightCount>=maxAns){
+            Intent i = new Intent(MainActivity.this, FinishActivity.class);
+            startActivity(i);
+
+        }
     }
 
 
