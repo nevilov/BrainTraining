@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
         timer();
         intent();
-
         numbersGenerate();
     }
 
@@ -118,16 +117,19 @@ public class MainActivity extends AppCompatActivity {
         currentTime = System.currentTimeMillis();
         ResTime  = (float)((currentTime-startTime)/1000);
 
+
         actionBar.setTitle("Время: " + ResTime + " секунд");
     }
 
     private void intent(){
         if(RightCount>=maxAns){
-            Intent i = new Intent(MainActivity.this, FinishActivity.class);
-            startActivity(i);
-
+            String generalResult = "Время: "+ ResTime+ " | " + "Верно: " + RightCount + " | " + "Неверно: " + WrongCount;
+            Intent intent = new Intent(MainActivity.this, FinishActivity.class);
+            intent.putExtra("result", generalResult);
+            startActivity(intent);
         }
     }
+
 
 
 
