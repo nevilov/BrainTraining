@@ -8,6 +8,24 @@
     android:hapticFeedbackEnabled="false">
 
     <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="268dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:gravity="center"
+        android:text="Время: 5 сек | Верно: 20 | Неверно 20"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/res" />
+
+    <TextView
         android:id="@+id/res"
         android:layout_width="363dp"
         android:layout_height="67dp"
@@ -28,29 +46,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="376dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginRight="11dp"
-        android:gravity="center"
-        android:text="Время: 5 сек | Верно: 20 | Неверно 20"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/res" />
-
-    <TextView
         android:id="@+id/rec"
         android:layout_width="318dp"
         android:layout_height="49dp"
         android:layout_marginStart="46dp"
         android:layout_marginLeft="46dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="47dp"
         android:layout_marginRight="47dp"
         android:gravity="center"
@@ -60,17 +61,17 @@
         android:textColorHighlight="#97750F"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_result" />
 
     <TextView
         android:id="@+id/tv_record"
-        android:layout_width="410dp"
-        android:layout_height="54dp"
+        android:layout_width="296dp"
+        android:layout_height="64dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:gravity="center"
@@ -78,7 +79,6 @@
         android:textColor="#E6FF03"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rec" />
 
@@ -86,12 +86,13 @@
         android:id="@+id/btnFinish"
         android:layout_width="240dp"
         android:layout_height="46dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="44dp"
         android:background="#FF0808"
         android:gravity="center"
-        android:text="@string/finish"
         android:onClick="onCLickFinish"
+        android:text="@string/finish"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_record" />
 </androidx.constraintlayout.widget.ConstraintLayout>

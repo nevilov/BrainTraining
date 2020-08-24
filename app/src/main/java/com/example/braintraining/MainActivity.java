@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long startTime = 0;
     private long currentTime =0;
-    private float ResTime = 0.0f;
+    private long ResTime = 0;
 
     private TextView RightAns, WrongAns;
     private int RightCount, WrongCount;
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void timer(){
         currentTime = System.currentTimeMillis();
-        ResTime  = (float)((currentTime-startTime)/1000);
+        ResTime  = (long) ((currentTime-startTime)/1000);
 
 
         actionBar.setTitle("Время: " + ResTime + " секунд");
@@ -123,9 +123,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void intent(){
         if(RightCount>=maxAns){
-            String generalResult = "Время: "+ ResTime+ " | " + "Верно: " + RightCount + " | " + "Неверно: " + WrongCount;
+            String generalResult = "Время: "+ ResTime+" сек"+ " | " + "Верно: " + RightCount + " | " + "Неверно: " + WrongCount;
             Intent intent = new Intent(MainActivity.this, FinishActivity.class);
             intent.putExtra("result", generalResult);
+            intent.putExtra("time", ResTime);
             startActivity(intent);
         }
     }
