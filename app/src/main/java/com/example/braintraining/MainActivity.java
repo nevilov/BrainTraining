@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private int RightCount, WrongCount;
     private byte flag = 100;
 
-    private byte maxAns = 2;
+    private byte maxAns = 25;
 
 
 
@@ -93,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
             WrongAns.setText("Неверно "+ WrongCount);
         }
         intent();
-
         timer();
         numbersGenerate();
     }
